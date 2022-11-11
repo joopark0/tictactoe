@@ -1,0 +1,33 @@
+body{
+    display: flex;
+    justify-content: center;
+    background-color: beige;
+}
+
+.container{
+    background-color: aquamarine;
+    display: flex;
+    flex-direction: column;
+    width: 90vw;
+    height: 90vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.gameContainer{
+    background-color: blue;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: repeat(3,1fr);
+    justify-content: center;
+    width: 60vw;
+    height: 60vh;
+}
+
+.box{
+    background-color: white;
+    border-style: solid;
+    border-color: black;
+    text-align: center;
+    font-size: 100px;
+}

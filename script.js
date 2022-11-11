@@ -4,15 +4,18 @@ const player = (type) => {
 
 const player1 = player('x');
 const player2 = player('o');
+
 const gameBoard = (() => {
     let gamearray = [
-        ['x','o','x'],
+        ['','','x'],
         ['o','x','o'],
         ['x','o','x']];
     
     function markSpot(playertype, space){
-        if (_checkSpot){
-
+        console.log("test");
+        if (_checkSpot(space)){
+            gamearray[space[0]][space[1]] = playertype;
+            updateScreen();
         }
     }
 
@@ -25,7 +28,6 @@ const gameBoard = (() => {
     function updateScreen(){
         for (let temparray in gamearray){
             for (let subarray in gamearray[temparray] ){
-                console.log(temparray, subarray);
     
                 let tempElement = document.getElementById(`${temparray}${subarray}`);
                 tempElement.innerHTML = gamearray[temparray][subarray];
@@ -52,6 +54,21 @@ const gameBoard = (() => {
 }
 updateScreen(gameBoard.gamearray);
 */
+const allBoxes = document.querySelectorAll(".box")
 gameBoard.updateScreen();
+let counter = 1;
 const testarray = [0,1];
-gameBoard.markSpot(player2.type, testarray);
+function evAction(){
+    let tarray = Array.from(String(this.id),Number);
+    if(counter%2 == 0){
+        gameBoard.markSpot(player1.type, tarray);
+        counter++;
+    }else  {
+        gameBoard.markSpot(player2.type, tarray);
+        counter++;
+    }
+}
+allBoxes.forEach((box) => {
+    box.addEventListener("click",evAction);
+});
+

@@ -17,14 +17,20 @@ const gameBoard = (() => {
         if (_checkSpot(space)){
             gamearray[space[0]][space[1]] = playertype;
             _updateScreen();
-        }
+            return true;
+        }else return false;
     }
     function _executeWin(winningplayer){
         document.querySelector("#announcer").textContent=`'${winningplayer}' wins!`;
         boxgrid.forEach((box) => {
             box.removeEventListener("click",evAction);
         });
-
+    }
+    function _executeDraw(){
+        document.querySelector("#announcer").textContent="Draw!"
+        boxgrid.forEach((box) => {
+            box.removeEventListener("click",evAction);
+        });
     }
     function _getColumn(inarray, columnnum){
         return inarray.map(row => row[columnnum]);
@@ -46,6 +52,8 @@ const gameBoard = (() => {
             _executeWin(gamearray[0][0].toString());
         }else if((gamearray[0][2] == 'x' && gamearray[1][1] == 'x' && gamearray[2][0] == 'x') || (gamearray[0][2] == '0' && gamearray[1][1] == '0' && gamearray[2][0] == '0')){
             _executeWin(gamearray[0][2].toString());
+        }else if(!gamearray.some(e => e.includes(''))){
+            _executeDraw();
         }
     }
     function _checkSpot(space){
@@ -71,16 +79,8 @@ const gameBoard = (() => {
         let drawcounter=0;
         for (let temparray in gamearray){
             for (let subarray in gamearray[temparray] ){
-    
                 let tempElement = document.getElementById(`${temparray}${subarray}`);
                 tempElement.innerHTML = gamearray[temparray][subarray];
-                if(gamearray[temparray][subarray] != ''){
-                    drawcounter++;
-                    if(drawcounter == 9){
-                        document.getElementById("announcer").textContent = "DRAW";
-                        
-                    }
-                }
         }
     }
 }
@@ -97,11 +97,16 @@ let counter = 1;
 function evAction(){
     let tarray = Array.from(String(this.id),Number);
     if(counter%2 == 0){
-        gameBoard.markSpot(player1.type, tarray);
+        if(!gameBoard.markSpot(player1.type, tarray)){
+            return;
+        }
         counter++;
         document.querySelector("#announcer").textContent = "Player 'O' turn";
         gameBoard.winCheck();
     }else  {
+        if(!gameBoard.markSpot(player2.type, tarray)){
+            return;
+        }else
         gameBoard.markSpot(player2.type, tarray);
         counter++;
         document.querySelector("#announcer").textContent = "Player 'X' turn";

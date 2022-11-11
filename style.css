@@ -19,8 +19,7 @@ body{
     display: grid;
     grid-template-columns: repeat(3,1fr);
     grid-template-rows: repeat(3,1fr);
-    justify-content: center;
-    width: 60vw;
+    width: 40vw;
     height: 60vh;
 }
 
@@ -29,5 +28,6 @@ body{
     border-style: solid;
     border-color: black;
     text-align: center;
-    font-size: 100px;
+
+    font-size: 120px;
 }

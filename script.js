@@ -81,9 +81,9 @@ const gameBoard = (() => {
             for (let subarray in gamearray[temparray] ){
                 let tempElement = document.getElementById(`${temparray}${subarray}`);
                 tempElement.innerHTML = gamearray[temparray][subarray];
+            }
         }
     }
-}
 
     return {
         markSpot: markSpot,

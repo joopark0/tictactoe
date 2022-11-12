@@ -50,7 +50,7 @@ const gameBoard = (() => {
             _executeWin(gamearray[0][2].toString());
         }else if((gamearray[0][0] == 'x' && gamearray[1][1] == 'x' && gamearray[2][2] == 'x') || (gamearray[0][0] == 'o' && gamearray[1][1] == 'o' && gamearray[2][2] == 'o')){
             _executeWin(gamearray[0][0].toString());
-        }else if((gamearray[0][2] == 'x' && gamearray[1][1] == 'x' && gamearray[2][0] == 'x') || (gamearray[0][2] == '0' && gamearray[1][1] == '0' && gamearray[2][0] == '0')){
+        }else if((gamearray[0][2] == 'x' && gamearray[1][1] == 'x' && gamearray[2][0] == 'x') || (gamearray[0][2] == 'o' && gamearray[1][1] == 'o' && gamearray[2][0] == 'o')){
             _executeWin(gamearray[0][2].toString());
         }else if(!gamearray.some(e => e.includes(''))){
             _executeDraw();
